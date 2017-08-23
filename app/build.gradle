@@ -1,0 +1,49 @@
+apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
+    defaultConfig {
+        applicationId "com.repitch.whereami"
+        minSdkVersion 18
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+}
+
+ext {
+    playServicesVersion = '11.0.2'
+    supportVersion = '26.0.0'
+    ormliteVersion = '5.0'
+    jodaTimeVersion = '2.9.9'
+    timberVersion = '4.5.1'
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile "com.android.support:appcompat-v7:$supportVersion"
+    compile "com.android.support:design:$supportVersion"
+    compile "joda-time:joda-time:$jodaTimeVersion"
+    compile "com.android.support.constraint:constraint-layout:1.0.2"
+    compile "com.j256.ormlite:ormlite-android:$ormliteVersion"
+    compile "com.jakewharton.timber:timber:$timberVersion"
+    compile "com.google.android.gms:play-services-maps:$playServicesVersion"
+
+    testCompile 'junit:junit:4.12'
+}
